@@ -1,0 +1,34 @@
+<html>
+	<head>
+    <style>
+        div.banhcuon{width: 300px;height: 400px;margin: 4px;border-style:solid ;display: inline-block}
+        div.banhcuon img{width: 300px;height: 360px}
+    </style>
+	<script src='jquery-3.6.0.min.js'></script>
+	<script>
+	function F1()
+	{
+		$.ajax({
+           url:'https://6214b1f689fad53b1f1bb0e1.mockapi.io/banhcuon/',type:'get',dataType:'json',
+           success:function(dataReturn){
+               console.log(dataReturn);
+               $('#result1').html('');
+               $.each(dataReturn,function(k,v){
+                   var s=`<div class="banhcuon">
+                        ${v.id} - ${v.name} <hr>
+                        <img src="${v.image}">
+                    </div>`;
+                        $('#result1').append(s);
+               });
+           } 
+        })
+	}
+	</script>
+	</head>
+	<body>
+        keyword <input type=text id='kw'>
+        <input type='button' value='Search' onClick='F1()'>
+        <div id=result1></div><hr>
+        <div id=result2></div>
+	</body>
+</html>
